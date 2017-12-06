@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head>  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js" ></script>
 	<meta charset="utf-8">
 
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimun-scale=1.0">
+
+
+    <Script type = "text / javascript">
+     google.charts.load ( 'actuales', {paquetes: [ 'corechart']});     
+   </Script>
 
 	<title>penepne</title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -11,59 +19,77 @@
 </head>
 <body>
 <header>
-	<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toogle="collapse" data-target="#navegacion-fm">
-					<span class="sr-only">Desplegar / Ocultar Menu</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-			
-
-				</button>
-				<a href="#" class="navbar-brand">EstacionMeteorologica</a>
-			</div>
-			<!--inicia Menu-->
-			<div class="collapse navbar-collapse" id="navegacion-fm">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Inicio</a></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle" data-toogle="dropdown" role="button">Categorias <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="Menu">
-							<li ><a href="#">blog</a></li>
-							<li class="divider"></li>
-							<li ><a href="#">afgd</a></li><li class="divider"></li>
-							<li ><a href="#">sssg</a></li><li class="divider"></li><li ><a href="#">dddd</a></li><li class="divider"></li>
-							
-						</ul>
-					</li>
-					<li ><a href="#">blog</a></li>
-					<li ><a href="#">contacto</a></li>
-				</ul>
-<form action="" class="navbar-form navbar-right" role="search"><div class="form-group">
-	<input type="text" class="form-control" placeholder="buscar">
-</div>
-<button type="submit" class="btn btn-primary">
-	<span class="glyphicon glyphicon-search"></span>
-</button>
-</form>
-
-			</div>
-		</div>
-		
-	</nav>
+	
 </header>
 <section class="jumbotron">
 	<div class="container">
 		<h1 class="titulo-blog">Estacion Meteorologica</h1>
-		<p>pene</p>
+		<p>Grafico de Tº y Humedad</p>
 		
 	</div>
 </section>
-<section class="main container"></section>
-<footer></footer>
+<section class="main container">
+	<div class="row">
+		<section class="posts col-md-12">
+		
+			<article class="post clearfix"></article>
 
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.min.js" ></script>
+			<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawTrendlines);
+
+function drawTrendlines() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Dogs');
+      data.addColumn('number', 'Cats');
+
+      data.addRows([
+        [0, 0, 0],    [1, 10, 5],   [2, 23, 15],  [3, 17, 9],   [4, 18, 10],  [5, 9, 5],
+        [6, 11, 3],   [7, 27, 19],  [8, 33, 25],  [9, 40, 32],  [10, 32, 24], [11, 35, 27],
+        [12, 30, 22], [13, 40, 32], [14, 42, 34], [15, 47, 39], [16, 44, 36], [17, 48, 40],
+        [18, 52, 44], [19, 54, 46], [20, 42, 34], [21, 55, 47], [22, 56, 48], [23, 57, 49],
+        [24, 60, 52], [25, 50, 42], [26, 52, 44], [27, 51, 43], [28, 49, 41], [29, 53, 45],
+        [30, 55, 47], [31, 60, 52], [32, 61, 53], [33, 59, 51], [34, 62, 54], [35, 65, 57],
+        [36, 62, 54], [37, 58, 50], [38, 55, 47], [39, 61, 53], [40, 64, 56], [41, 65, 57],
+        [42, 63, 55], [43, 66, 58], [44, 67, 59], [45, 69, 61], [46, 69, 61], [47, 70, 62],
+        [48, 72, 64], [49, 68, 60], [50, 66, 58], [51, 65, 57], [52, 67, 59], [53, 70, 62],
+        [54, 71, 63], [55, 72, 64], [56, 73, 65], [57, 75, 67], [58, 70, 62], [59, 68, 60],
+        [60, 64, 56], [61, 60, 52], [62, 65, 57], [63, 67, 59], [64, 68, 60], [65, 69, 61],
+        [66, 70, 62], [67, 72, 64], [68, 75, 67], [69, 80, 72]
+      ]);
+
+      var options = {
+        hAxis: {
+          title: 'Time'
+        },
+        vAxis: {
+          title: 'Popularity'
+        },
+        colors: ['#AB0D06', '#007329'],
+        trendlines: {
+          0: {type: 'exponential', color: '#333', opacity: 1},
+          1: {type: 'linear', color: '#111', opacity: .3}
+        }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+    <div class="container">
+      <div id="chart_div"></div>
+  </div>
+		</section>
+	</div>
+</section>
+  
+<footer>
+	
+</footer>
+
+
 </body>
 </html>
